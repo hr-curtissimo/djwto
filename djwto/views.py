@@ -484,9 +484,9 @@ class BlackListTokenView(View):
         )
 
         if settings.DJWTO_MODE == 'ONE-COOKIE':
-            response.delete_cookie('jwt_access')
+            response.delete_cookie('jwt_access', samesite=settings.DJWTO_SAME_SITE)
 
         if settings.DJWTO_MODE == 'TWO-COOKIES':
-            response.delete_cookie('jwt_access_payload')
-            response.delete_cookie('jwt_access_token')
+            response.delete_cookie('jwt_access_payload', samesite=settings.DJWTO_SAME_SITE)
+            response.delete_cookie('jwt_access_token', samesite=settings.DJWTO_SAME_SITE)
         return response
