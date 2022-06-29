@@ -480,7 +480,8 @@ class BlackListTokenView(View):
         response = JsonResponse({'msg': 'Tokens successfully deleted.'})
         response.delete_cookie(
             'jwt_refresh',
-            path=f'/{settings.DJWTO_REFRESH_COOKIE_PATH}'
+            path=f'/{settings.DJWTO_REFRESH_COOKIE_PATH}',
+            samesite=settings.DJWTO_SAME_SITE
         )
 
         if settings.DJWTO_MODE == 'ONE-COOKIE':
